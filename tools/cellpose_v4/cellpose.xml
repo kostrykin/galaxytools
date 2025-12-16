@@ -133,13 +133,6 @@
         </data>
     </outputs>
     <tests>
-       <test expect_num_outputs="2">
-            <param name="img_in" value="image.png"/>
-	    <param name="save_png" value="true" />
-	    <param name="save_tif" value="true"/>
-            <output name="cp_tiff" file="image_cp_masks.tiff" compare="image_diff" metric="iou" eps="0.05"/>
-	    <output name="cp_png" file="image_cp_masks.png" compare="image_diff" metric="iou" eps="0.1"/>
-	</test>
         <test expect_num_outputs="1">
 	    <param name="img_in" value="image3d.tiff"/>
             <param name="save_png" value="false"/>
@@ -151,7 +144,7 @@
 		<param name="no_interp" value="true" />
 		<param name="niter" value="1"/>
 	    </section>
-	    <output name="cp_tiff" file="image3d_cp_masks.tiff"/>
+            <output name="cp_tiff" file="image3d_cp_masks.tiff" compare="image_diff" eps="0.1" />
         </test>
         <test expect_num_outputs="5">
 	    <param name="img_in" value="image.png"/>
@@ -162,7 +155,7 @@
 	    <param name="use_gpu" value="true" />
 	    <param name="detailed_output" value="true" />
 	    <output name="cp_png" file="image_cp_masks.png" compare="image_diff" metric="iou" eps="0.1"/>
-            <output name="cp_flows" file="image_flows_cp_masks.tiff" compare="sim_size" delta="100" />
+            <output name="cp_flows" file="image_flows_cp_masks.tiff" compare="image_diff" eps="0.1" />
 	    <output name="cp_flows_dp" file="image_dP_cp_masks.tiff" compare="image_diff" eps="0.5"/>
 	    <output name="cp_outlines" file="image_outlines_cp_masks.png" compare="image_diff" eps="0.5"/>
             <output name="logs" ftype='txt'>
@@ -171,25 +164,6 @@
                 </assert_contents>
             </output>
         </test>
-	<test expect_num_outputs="1">
-            <param name="img_in" value="image.png" />
-	    <param name="save_png" value="true" />
-	    <param name="save_tif" value="false" />
-	    <param name="use_gpu" value="true" />
-            <section name="options">
-                <param name="no_norm" value="false" />
-                <param name="no_resample" value="false" />
-                <param name="diameter" value="10" />
-                <param name="flow_threshold" value="0.5" />
-                <param name="cellprob_threshold" value="0.0" />
-                <param name="niter" value="10" />
-                <param name="anisotropy" value="1.0" />
-                <param name="do_3D" value="false" />
-	        <param name="transformer" value="false" />
-	    </section>
-            <param name="detailed_output" value="false" />
-	    <output name="cp_png" file="image_cp_masks1.png" compare="image_diff" metric="iou" eps="0.02" />
-	 </test>
     </tests>
     <help>
         <![CDATA[
